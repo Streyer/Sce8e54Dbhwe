@@ -8,13 +8,12 @@ chai
     .use(require('chai-as-promised'));
 
 
-
 //----------------------------------------------------------------------
 //----------------------------------------------------------------------
 
 
-var dateFormat = function () {
-    var	token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
+let dateFormat = function () {
+    let token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
         timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
         timezoneClip = /[^-+\dA-Z]/g,
         pad = function (val, len) {
@@ -26,7 +25,7 @@ var dateFormat = function () {
 
     // Regexes and supporting functions are cached through closure
     return function (date, mask, utc) {
-        var dF = dateFormat;
+        let dF = dateFormat;
 
         // You can't provide utc if you skip other args (use the "UTC:" mask prefix)
         if (arguments.length == 1 && Object.prototype.toString.call(date) == "[object String]" && !/\d/.test(date)) {
@@ -46,7 +45,7 @@ var dateFormat = function () {
             utc = true;
         }
 
-        var	_ = utc ? "getUTC" : "get",
+        let _ = utc ? "getUTC" : "get",
             d = date[_ + "Date"](),
             D = date[_ + "Day"](),
             m = date[_ + "Month"](),
@@ -57,33 +56,33 @@ var dateFormat = function () {
             L = date[_ + "Milliseconds"](),
             o = utc ? 0 : date.getTimezoneOffset(),
             flags = {
-                d:    d,
-                dd:   pad(d),
-                ddd:  dF.i18n.dayNames[D],
+                d: d,
+                dd: pad(d),
+                ddd: dF.i18n.dayNames[D],
                 dddd: dF.i18n.dayNames[D + 7],
-                m:    m + 1,
-                mm:   pad(m + 1),
-                mmm:  dF.i18n.monthNames[m],
+                m: m + 1,
+                mm: pad(m + 1),
+                mmm: dF.i18n.monthNames[m],
                 mmmm: dF.i18n.monthNames[m + 12],
-                yy:   String(y).slice(2),
+                yy: String(y).slice(2),
                 yyyy: y,
-                h:    H % 12 || 12,
-                hh:   pad(H % 12 || 12),
-                H:    H,
-                HH:   pad(H),
-                M:    M,
-                MM:   pad(M),
-                s:    s,
-                ss:   pad(s),
-                l:    pad(L, 3),
-                L:    pad(L > 99 ? Math.round(L / 10) : L),
-                t:    H < 12 ? "a"  : "p",
-                tt:   H < 12 ? "am" : "pm",
-                T:    H < 12 ? "A"  : "P",
-                TT:   H < 12 ? "AM" : "PM",
-                Z:    utc ? "UTC" : (String(date).match(timezone) || [""]).pop().replace(timezoneClip, ""),
-                o:    (o > 0 ? "-" : "+") + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
-                S:    ["th", "st", "nd", "rd"][d % 10 > 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10]
+                h: H % 12 || 12,
+                hh: pad(H % 12 || 12),
+                H: H,
+                HH: pad(H),
+                M: M,
+                MM: pad(M),
+                s: s,
+                ss: pad(s),
+                l: pad(L, 3),
+                L: pad(L > 99 ? Math.round(L / 10) : L),
+                t: H < 12 ? "a" : "p",
+                tt: H < 12 ? "am" : "pm",
+                T: H < 12 ? "A" : "P",
+                TT: H < 12 ? "AM" : "PM",
+                Z: utc ? "UTC" : (String(date).match(timezone) || [""]).pop().replace(timezoneClip, ""),
+                o: (o > 0 ? "-" : "+") + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
+                S: ["th", "st", "nd", "rd"][d % 10 > 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10]
             };
 
         return mask.replace(token, function ($0) {
@@ -94,17 +93,17 @@ var dateFormat = function () {
 
 // Some common format strings
 dateFormat.masks = {
-    "default":      "ddd mmm dd yyyy HH:MM:ss",
-    shortDate:      "m/d/yy",
-    mediumDate:     "mmm d, yyyy",
-    longDate:       "mmmm d, yyyy",
-    fullDate:       "dddd, mmmm d, yyyy",
-    shortTime:      "h:MM TT",
-    mediumTime:     "h:MM:ss TT",
-    longTime:       "h:MM:ss TT Z",
-    isoDate:        "yyyy-mm-dd",
-    isoTime:        "HH:MM:ss",
-    isoDateTime:    "yyyy-mm-dd'T'HH:MM:ss",
+    "default": "ddd mmm dd yyyy HH:MM:ss",
+    shortDate: "m/d/yy",
+    mediumDate: "mmm d, yyyy",
+    longDate: "mmmm d, yyyy",
+    fullDate: "dddd, mmmm d, yyyy",
+    shortTime: "h:MM TT",
+    mediumTime: "h:MM:ss TT",
+    longTime: "h:MM:ss TT Z",
+    isoDate: "yyyy-mm-dd",
+    isoTime: "HH:MM:ss",
+    isoDateTime: "yyyy-mm-dd'T'HH:MM:ss",
     isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
 };
 
@@ -126,30 +125,21 @@ Date.prototype.format = function (mask, utc) {
 };
 
 
-
 //----------------------------------------------------------------------
 //----------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
-let operationVanguardWeaponCase:string = "http://steamcommunity.com/market/listings/730/Operation%20Vanguard%20Weapon%20Case";
-let spectrumCaseKey:string = "http://steamcommunity.com/market/listings/730/Spectrum%202%20Case%20Key";
-let waponCaseClutch:string = "http://steamcommunity.com/market/listings/730/Clutch%20Case";
-let waponCaseHuntsman:string = "http://steamcommunity.com/market/listings/730/Huntsman%20Weapon%20Case";
+let caseKeySpectrum: string = "http://steamcommunity.com/market/listings/730/Spectrum%202%20Case%20Key";
+let weaponCaseClutch: string = "http://steamcommunity.com/market/listings/730/Clutch%20Case";
+let weaponCaseHuntsman: string = "http://steamcommunity.com/market/listings/730/Huntsman%20Weapon%20Case";
+let weaponCaseOperationVanguard: string = "http://steamcommunity.com/market/listings/730/Operation%20Vanguard%20Weapon%20Case";
 
 let mysql = require('mysql');
-let con:any;
-function createConnection(){
+let con: any;
 
-     con = mysql.createConnection({
+function createConnection() {
+
+    con = mysql.createConnection({
         host: "localhost",
         user: "root",
         password: "ruf5nogi7",
@@ -180,17 +170,16 @@ defineSupportCode(async ({Given, When}) => {
 
     Given(/^I am on the CS GO Market$/, async () => {
         await  browser.driver.sleep(100);
-        await browser.get(operationVanguardWeaponCase);
+        await browser.get(weaponCaseOperationVanguard);
         await  browser.driver.sleep(100);
         //await  element(by.id('submit')).click();
         await  browser.driver.sleep(100);
     });
 
 
-
     Given(/^Waffenkiste: Huntsman$/, async () => {
         await  browser.driver.sleep(100);
-        await browser.get(waponCaseHuntsman);
+        await browser.get(weaponCaseHuntsman);
         await  browser.driver.sleep(100);
         //await  element(by.id('submit')).click();
         await  browser.driver.sleep(100);
@@ -198,7 +187,7 @@ defineSupportCode(async ({Given, When}) => {
 
     Given(/^Kistenschluessel Spectrum 2$/, async () => {
         await  browser.driver.sleep(100);
-        await browser.get(spectrumCaseKey);
+        await browser.get(caseKeySpectrum);
         await  browser.driver.sleep(100);
         //await  element(by.id('submit')).click();
         await  browser.driver.sleep(100);
@@ -206,12 +195,11 @@ defineSupportCode(async ({Given, When}) => {
 
     Given(/^Waffenkiste Clutch$/, async () => {
         await  browser.driver.sleep(100);
-        await browser.get(waponCaseClutch);
+        await browser.get(weaponCaseClutch);
         await  browser.driver.sleep(100);
         //await  element(by.id('submit')).click();
         await  browser.driver.sleep(100);
     });
-
 
 
     When(/^I collect Data$/, async () => {
@@ -220,7 +208,7 @@ defineSupportCode(async ({Given, When}) => {
 
         await  browser.driver.sleep(1000);
         let i = 0;
-        let table = "operationVanguardWeaponCase";
+        let table = "weaponCaseOperationVanguard";
         let counter = 0;
         let stueckzahlkaufenALT = 0;
         let stueckzahlverkaufenALT = 0;
@@ -230,29 +218,27 @@ defineSupportCode(async ({Given, When}) => {
         let stueckzahlverkaufen = 0;
         let preiskaufen = .0;
         let preisverkaufen = .0;
-       // let liste:any=[];
-       // let listeALT:any=[];
+        // let liste:any=[];
+        // let listeALT:any=[];
 
         for (i; i < 20; i++) {
 
 
-                await element(by.id('market_commodity_forsale')).getText().then(function (text) {
-                    let test = text.split(" ");
-                    stueckzahlkaufen = parseInt(test[0]);
-                    let preiskaufenFloat = parseFloat(test[5].substring(1)) * 100;
-                    preiskaufen = parseInt(preiskaufenFloat.toString());
-                });
+            await element(by.id('market_commodity_forsale')).getText().then(function (text) {
+                let test = text.split(" ");
+                stueckzahlkaufen = parseInt(test[0]);
+                let preiskaufenFloat = parseFloat(test[5].substring(1)) * 100;
+                preiskaufen = parseInt(preiskaufenFloat.toString());
+            });
 
-                await element(by.id('market_commodity_buyrequests')).getText().then(function (text) {
-                    let test = text.split(" ");
-                    stueckzahlverkaufen = parseInt(test[0]);
-                    let preisverkaufenFloat = parseFloat(test[5].substring(1)) * 100;
-                    preisverkaufen = parseInt(preisverkaufenFloat.toString());
-                });
-                //console.log('neue Liste: ');
-                //console.log(liste);
-
-
+            await element(by.id('market_commodity_buyrequests')).getText().then(function (text) {
+                let test = text.split(" ");
+                stueckzahlverkaufen = parseInt(test[0]);
+                let preisverkaufenFloat = parseFloat(test[5].substring(1)) * 100;
+                preisverkaufen = parseInt(preisverkaufenFloat.toString());
+            });
+            //console.log('neue Liste: ');
+            //console.log(liste);
 
 
             await browser.getCurrentUrl().then(function (url) {
@@ -260,29 +246,33 @@ defineSupportCode(async ({Given, When}) => {
                 //return url.toString();
 
 
-                if (operationVanguardWeaponCase == url) {
-                    table = "operationVanguardWeaponCase";
-                    // console.log("operationVanguardWeaponCase");
+                if (weaponCaseOperationVanguard == url) {
+                    table = "weaponCaseOperationVanguard";
+                    // console.log("weaponCaseOperationVanguard");
                     return table;
                 }
 
-                if (spectrumCaseKey  == url) {
-                    table = "spectrumCaseKey";
-                    // console.log("spectrumCaseKey");
+                if (caseKeySpectrum == url) {
+                    table = "caseKeySpectrum";
+                    // console.log("caseKeySpectrum");
                     return table;
                 }
 
 
-                if (waponCaseClutch == url) {
-                    table = "waponCaseClutch";
-                    // console.log("waponCaseClutch");
+                if (weaponCaseClutch == url) {
+                    table = "weaponCaseClutch";
+                    // console.log("weaponCaseClutch");
+                    return table;
+                }
+
+
+                if (weaponCaseHuntsman == url) {
+                    table = "weaponCaseHuntsman";
+                    // console.log("weaponCaseHuntsman");
                     return table;
                 }
 
             });
-
-
-
 
 
             if (((stueckzahlkaufen != stueckzahlkaufenALT) || (stueckzahlverkaufen != stueckzahlverkaufenALT)) || ((stueckzahlkaufen != stueckzahlkaufenALT) && (stueckzahlverkaufen != stueckzahlverkaufenALT))) {
@@ -292,18 +282,18 @@ defineSupportCode(async ({Given, When}) => {
                 stueckzahlverkaufenALT = stueckzahlverkaufen;
             }
 
-          //  if(liste[0] != listeALT[0]){
-          //      testInsert(table, stueckzahlkaufen, preiskaufen, stueckzahlverkaufen, preisverkaufen);
-          //  }
-          //  if(liste[1] != listeALT[1]){
-          //      testInsert(table, stueckzahlkaufen, preiskaufen, stueckzahlverkaufen, preisverkaufen);
-          //  }
-          //  if(liste[2] != listeALT[2]){
-          //      testInsert(table, stueckzahlkaufen, preiskaufen, stueckzahlverkaufen, preisverkaufen);
-          //  }
-          //  if(liste[3] != listeALT[3]){
-          //      testInsert(table, stueckzahlkaufen, preiskaufen, stueckzahlverkaufen, preisverkaufen);
-          //  }
+            //  if(liste[0] != listeALT[0]){
+            //      testInsert(table, stueckzahlkaufen, preiskaufen, stueckzahlverkaufen, preisverkaufen);
+            //  }
+            //  if(liste[1] != listeALT[1]){
+            //      testInsert(table, stueckzahlkaufen, preiskaufen, stueckzahlverkaufen, preisverkaufen);
+            //  }
+            //  if(liste[2] != listeALT[2]){
+            //      testInsert(table, stueckzahlkaufen, preiskaufen, stueckzahlverkaufen, preisverkaufen);
+            //  }
+            //  if(liste[3] != listeALT[3]){
+            //      testInsert(table, stueckzahlkaufen, preiskaufen, stueckzahlverkaufen, preisverkaufen);
+            //  }
 
 
             //testInsert(table, stueckzahlkaufen, preiskaufen, stueckzahlverkaufen, preisverkaufen);
@@ -320,16 +310,15 @@ defineSupportCode(async ({Given, When}) => {
             await  browser.driver.sleep(100);
 
 
-
             //await browser.actions().mouseMove({x:100,y:100});
             //await browser.actions().mouseMove({x:-100,y:-100});
 
             await browser.executeScript('window.scrollTo(100,100);').then(function () {
-                browser.actions().mouseMove({x:100,y:100});
+                browser.actions().mouseMove({x: 100, y: 100});
             });
             //await  browser.driver.sleep(100);
             await browser.executeScript('window.scrollTo(120,120);').then(function () {
-                browser.actions().mouseMove({x:-100,y:-100});
+                browser.actions().mouseMove({x: -100, y: -100});
             });
 
 
