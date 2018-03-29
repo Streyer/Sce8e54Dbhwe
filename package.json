@@ -1,0 +1,24 @@
+{
+  "name": "amd-coupon-tab-protractor-tests",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "run-protractor": "webdriver-manager update --versions.chrome 2.34 && protractor config/protractor.conf.js",
+    "run-protractor-jenkins": "webdriver-manager update --versions.chrome 2.32 && protractor config/protractor.conf.js --suite CouponTab"
+  },
+  "dependencies": {
+    "@types/cucumber": "^2.1.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-things": "^0.2.0",
+    "cucumber": "^2.3.1",
+    "mysql": "^2.15.0",
+    "protractor": "^5.1.2",
+    "protractor-cucumber-framework": "^4.1.1",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  },
+  "engines": {
+    "node": ">= 6"
+  }
+}
