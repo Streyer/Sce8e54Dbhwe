@@ -1,12 +1,12 @@
 npm:
   registry:
-    fetchUrl: "https://nexus-alexa.tools.msi.audi.com/repository/npm-group/"
-    publishUrl: "https://nexus-alexa.tools.msi.audi.com/repository/npm-group/"
-    credentialsId: "msipric-nexus-development"
+    fetchUrl: ""
+    publishUrl: ""
+    credentialsId: ""
 
 slack:
-  hookUrl: "https://hooks.slack.com/services/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"
-  channel: "#abi"
+  hookUrl: ""
+  channel: ""
   branches:
     - "develop"
     - "release"
