@@ -10,7 +10,7 @@ exports.config = {
     framework: 'custom',
     frameworkPath: require.resolve('protractor-cucumber-framework'),
     // TODO add all specs
-    specs: ['../acceptance_test/tests/CSGoGathering.feature','../acceptance_test/tests/kistenSchluesselSpectrum2.feature','../acceptance_test/tests/waffenkisteClutch.feature','../acceptance_test/tests/waffenkisteHuntsman.feature'],
+    specs: ['../acceptance_test/tests/*'],
     //allScriptsTimeout: 3 * 60 * 100,
     keepAlive: false,
 
