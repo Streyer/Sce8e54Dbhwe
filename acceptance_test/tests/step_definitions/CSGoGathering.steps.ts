@@ -1,6 +1,6 @@
 import {defineSupportCode} from 'cucumber';
 import {browser, element, by} from 'protractor';
-//import {dateFormat} from 'DateFormat';
+import {dateFormat } from 'dateTime'
 
 let chai = require('chai');
 chai
@@ -90,7 +90,6 @@ let dateFormat = function () {
         });
     };
 }();
-
 // Some common format strings
 dateFormat.masks = {
     "default": "ddd mmm dd yyyy HH:MM:ss",
@@ -125,6 +124,7 @@ Date.prototype.format = function (mask, utc) {
 };
 
 
+
 //----------------------------------------------------------------------
 //----------------------------------------------------------------------
 
@@ -155,7 +155,8 @@ function createConnection() {
 
 function testInsert(table: string, stueckzahlkaufen: number, preiskaufen: number, stueckzahlverkaufen: number, preisverkaufen: number) {
     let now = new Date();
-    let timestamp = now.format("isoDateTime");
+    let timestamp = now.format('isoDateTime');
+    console.log(timestamp);
 
     console.log(timestamp);
     let sql = "INSERT INTO " + table + " (stueckzahlkaufen, preiskaufen, stueckzahlverkaufen, preisverkaufen, datetime ) VALUES ('" + stueckzahlkaufen + "','" + preiskaufen + "','" + stueckzahlverkaufen + "','" + preisverkaufen + "','" + timestamp + "')";
