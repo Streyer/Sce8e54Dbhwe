@@ -48,7 +48,7 @@ export function testInsert(table: string, stueckzahlkaufen: number, preiskaufen:
 }
 
 export function queryForLastPrice(){
-    con.query("SELECT * FROM rifleAk47SafariMesh ORDER BY datetime DESC LIMIT 1", function (err: any, result: any, fields: any) {
+    con.query("SELECT * FROM rifleAk47SafariMesh ORDER BY datetime DESC LIMIT 1", function (err: any, result: any) {
         if (err) throw err;
         console.log(result);
     });
