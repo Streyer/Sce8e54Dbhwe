@@ -19,8 +19,8 @@ exports.config = {
     capabilities: {
         'browserName': 'chrome',
         chromeOptions: {args: [ "--headless", "--disable-gpu", "--window-size=1500,950" ]},
-        shardTestFiles: true,
-        maxInstances: 4
+        //shardTestFiles: true,
+        //maxInstances: 4
 
     },
 
@@ -28,7 +28,7 @@ exports.config = {
         compiler: 'ts:ts-node/register',
         strict: true,
         format: 'json:.test-results/e2e-test-results.json',
-        require: ['cucumber-timeout.js', '../acceptance_test/tests/step_definitions/CSGoGathering.steps.ts']
+        require: ['cucumber-timeout.js', '../acceptance_test/tests/step_definitions/*']
     },
 
     beforeLaunch: function () {
@@ -51,10 +51,7 @@ exports.config = {
     },
 
     suites: {
-        BasicTestSet: '../acceptance_test/tests/BasicTestSet.feature',
-        DuplicateNames: '../acceptance_test/tests/MSIPRIC-697_duplicate_names.feature',
-        EqualNamesForTripTypes: '../acceptance_test/tests/MSIPRIC-837[Pricing_Tab]_Price_Group_Name_cant_be_equal_for_Trip_Type_Private_and_Business.feature',
-        SmokeTest:'../acceptance_test/tests/SmokeTest.feature'
+        rifle_ak47_safariMesh: '../acceptance_test/tests/rifle-ak47_safariMesh.feature'
     },
 
     directConnect: true

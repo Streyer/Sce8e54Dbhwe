@@ -8,16 +8,17 @@ chai
 
 
 
-
-let caseKeySpectrum: string = "http://steamcommunity.com/market/listings/730/Spectrum%202%20Case%20Key";
-let weaponCaseClutch: string = "http://steamcommunity.com/market/listings/730/Clutch%20Case";
-let weaponCaseHuntsman: string = "http://steamcommunity.com/market/listings/730/Huntsman%20Weapon%20Case";
-let weaponCaseOperationVanguard: string = "http://steamcommunity.com/market/listings/730/Operation%20Vanguard%20Weapon%20Case";
+let defaultUrl: string = "http://steamcommunity.com/market/listings/730/";
+let caseKeySpectrum: string = defaultUrl+"Spectrum%202%20Case%20Key";
+let rifleAk47SafariMesh: string = defaultUrl+"AK-47%20%7C%20Safari%20Mesh%20%28Field-Tested%29";
+let weaponCaseClutch: string = defaultUrl+"Clutch%20Case";
+let weaponCaseHuntsman: string = defaultUrl+"http://steamcommunity.com/market/listings/730/Huntsman%20Weapon%20Case";
+let weaponCaseOperationVanguard: string = defaultUrl+"Operation%20Vanguard%20Weapon%20Case";
 
 let mysql = require('mysql');
 let con: any;
 
-function createConnection() {
+export function createConnection() {
 
     con = mysql.createConnection({
         host: "localhost",
@@ -33,7 +34,7 @@ function createConnection() {
 
 }
 
-function testInsert(table: string, stueckzahlkaufen: number, preiskaufen: number, stueckzahlverkaufen: number, preisverkaufen: number) {
+export function testInsert(table: string, stueckzahlkaufen: number, preiskaufen: number, stueckzahlverkaufen: number, preisverkaufen: number) {
     //let now = new Date();
     //let timestamp = now.format('isoDateTime');
     let timestamp = new Date().toISOString().slice(0,-5);
@@ -43,6 +44,13 @@ function testInsert(table: string, stueckzahlkaufen: number, preiskaufen: number
     con.query(sql, function (err: any) {
         if (err) throw err;
         console.log('stueckzahlkaufen: ' + stueckzahlkaufen + ' preiskaufen: ' + preiskaufen + ' stueckzahlverkaufen: ' + stueckzahlverkaufen + ' preisverkaufen: ' + preisverkaufen + ' timestamp: ' + timestamp);
+    });
+}
+
+export function queryForLastPrice(){
+    con.query("SELECT * FROM rifleAk47SafariMesh ORDER BY datetime DESC LIMIT 1", function (err: any, result: any, fields: any) {
+        if (err) throw err;
+        console.log(result);
     });
 }
 
@@ -57,6 +65,13 @@ defineSupportCode(async ({Given, When}) => {
         await  browser.driver.sleep(100);
     });
 
+    Given(/^AK-47 - Safari Mesh$/, async () => {
+        await  browser.driver.sleep(100);
+        await browser.get(rifleAk47SafariMesh);
+        await  browser.driver.sleep(100);
+        //await  element(by.id('submit')).click();
+        await  browser.driver.sleep(100);
+    });
 
     Given(/^Waffenkiste: Huntsman$/, async () => {
         await  browser.driver.sleep(100);
